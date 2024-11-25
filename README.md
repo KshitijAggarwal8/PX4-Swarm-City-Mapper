@@ -1,3 +1,6 @@
+[![codecov](https://codecov.io/gh/Apoorv-1009/PX4-Swarm-City-Mapper/graph/badge.svg?token=QapVFaDHVu)](https://codecov.io/gh/Apoorv-1009/PX4-Swarm-City-Mapper) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+
 # Set up a PX4 development environment on Ubuntu in the normal way
 ```bash
 # set up the PX4 environment in your root file
@@ -74,6 +77,10 @@ ros2 launch final_project multi_drone_controller.launch.py nb_vehicles:=<number 
 ```bash
 killall gzserver gzclient
 ```
+
+# Product Dev notes: 
+[Link to the Doc](https://docs.google.com/document/d/1IhdOAMICzZZBzhB9_Nkyce7AI6Z4n4CMd4ubZWPyqKw/edit?usp=sharing)
+
 
 # for any other reference vist
 [PX4 documentation](https://docs.px4.io/main/en/ros2/user_guide.html#install-px4)

@@ -17,6 +17,13 @@ install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}/
 )
 
+install(DIRECTORY libs
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+install(DIRECTORY src
+  DESTINATION share/${PROJECT_NAME}/
+)
 # install(DIRECTORY models
 #   DESTINATION share/${PROJECT_NAME}/
 # )

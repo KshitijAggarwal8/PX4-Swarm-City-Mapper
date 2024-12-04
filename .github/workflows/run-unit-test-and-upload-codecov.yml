@@ -10,31 +10,16 @@
 #    https://docs.codecov.com/docs/status-badges
 #
 # version 1.1
-#
-# Docker method.  Use pre-build ROS 2 docker image.
-#
-# Important Note, Docker Hub has restricted the number of image pull
-# requests.
-#
-# See # https://docs.docker.com/docker-hub/download-rate-limit
-#
-# This means, if the you runs GitHub CI a lot, it will fail when you
-# run more than 100 times within 6 hours.  And then, you will have to
-# wait for a almost a day to be able to pull the docker image again.
-#
-# The alternative is to use GitHub Docker Registry or GitHub Pacakges
-# (ghcr.io) instead of Docker Hub.
-#
-# https://www.youtube.com/watch?v=U7TY_qUD8yA&ab_channel=AndrewSchmelyun
-# https://github.com/aschmelyun/github-actions-docker-phpunit
-# https://github.com/aschmelyun/github-actions-docker-compile
 ##############################################################################
 
 name: Run Unit Test and Upload Coverage Report
+
 on:
-  # Triggered whenever push to main 
+  # Triggered whenever push to main and phase2_dev
   push:
-    branches: [ "main" ]
+    branches: 
+      - "main"
+      - "phase2_dev"
 
   # Triggered whenever a pull request is created on main
   pull_request:

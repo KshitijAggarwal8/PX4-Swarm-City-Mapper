@@ -23,22 +23,46 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 include(GoogleTest)
 
-# Enable code coverage
-if(COVERAGE)
-  find_program(LCOV_EXEC lcov)
-  find_program(GENHTML_EXEC genhtml)
-
-  if(LCOV_EXEC AND GENHTML_EXEC)
-    add_custom_target(test_coverage
-      COMMAND ${LCOV_EXEC} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info
-      COMMAND ${GENHTML_EXEC} --output-directory coverage_report coverage.info
-      COMMENT "Generating test coverage report"
-      VERBATIM
-    )
-  else()
-    message(WARNING "lcov or genhtml not found. Coverage report generation will not work.")
-  endif()
+option(WANT_COVERAGE "this option enable coverage" ON)
+if(NOT CMAKE_BUILD_TYPE MATCHES "Debug")
+  set(WANT_COVERAGE OFF)
 endif()
+
+# create targets for building code coverage reports
+if(WANT_COVERAGE)
+  # unit test coverage:
+  setup_target_for_coverage_lcov ( # use lcov to generate coverage report
+    NAME test_coverage          # target name
+    #EXECUTABLE ctest || true    # what to run insdie the build directory?
+                                 #   '|| true' --> continue coverage even if ctest failed
+    EXECUTABLE ctest     # what to run insdie the build directory?
+    EXCLUDE
+      "*gtest*"          # Don't analyze googleTest code
+      "/usr/*"   # Don't analyze system headers
+      "build/*"          # Don't analyze build files
+      "Core/*"
+      "Geometry/*"
+      "plugins/*"
+    )
+
+endif()
+
+# # Enable code coverage
+# if(COVERAGE)
+#   find_program(LCOV_EXEC lcov)
+#   find_program(GENHTML_EXEC genhtml)
+
+#   if(LCOV_EXEC AND GENHTML_EXEC)
+#     add_custom_target(test_coverage
+#       COMMAND ${LCOV_EXEC} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info
+#       COMMAND ${GENHTML_EXEC} --output-directory coverage_report coverage.info
+#       COMMENT "Generating test coverage report"
+#       VERBATIM
+#     )
+#   else()
+#     message(WARNING "lcov or genhtml not found. Coverage report generation will not work.")
+#   endif()
+# endif()
 
 
 # find dependencies

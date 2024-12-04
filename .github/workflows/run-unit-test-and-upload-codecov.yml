@@ -34,11 +34,11 @@ jobs:
     # Create a container of the latest Ubuntu, other values could be
     # ubuntu-latest, ubuntu-22.04, etc.
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        shell: bash       # specify bash for use with docker container
-    container:
-      image: osrf/ros:humble-desktop # use ROS Humble from docker hub repository
+    # defaults:
+    #   run:
+    #     shell: bash       # specify bash for use with docker container
+    # container:
+    #   image: osrf/ros:humble-desktop # use ROS Humble from docker hub repository
     steps:
       # We want to use GitHub CI checkout version 3 to check out our branch
       - uses: actions/checkout@v3
@@ -50,22 +50,29 @@ jobs:
           sudo apt install -y doxygen lcov gcovr pandoc
           source /opt/ros/humble/setup.bash
           sudo apt install -y ros-${ROS_DISTRO}-catch-ros2
-          
-      # Run all unit test, integration test, and generate combined coverage report
-      - name: Build, run unit test, and generate coverage report
+
+      # Build, run unit test, and generate coverage report
+      - name: Configure CMake flags and build exectables
         run: |
-          ./do-tests-and-coverage.bash
-          ./do-docs.bash
-          cat build/test_coverage_merged.info
+          cmake -D WANT_COVERAGE=ON -D CMAKE_BUILD_TYPE=Debug -D OpenCV_DIR=/usr/share/opencv4 -S ./ -B build/
+          cmake --build build/ --clean-first --target all test_coverage
+          cat build/test_coverage.info
+
+      # # Run all unit test, integration test, and generate combined coverage report
+      # - name: Build, run unit test, and generate coverage report
+      #   run: |
+      #     ./do-tests-and-coverage.bash
+      #     ./do-docs.bash
+      #     cat build/test_coverage_merged.info
 
       # Upload coverage result to CodeCov
       - name: Upload coverage result to CodeCov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # required (must add token in your github repo)
           files: ${{github.workspace}}/build/test_coverage_merged.info
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)      
-          disable_search: true # optional (default = false)
+          # disable_search: true # optional (default = false)
           plugin: none         # optional (xcode, gcov, pycoverage)
           

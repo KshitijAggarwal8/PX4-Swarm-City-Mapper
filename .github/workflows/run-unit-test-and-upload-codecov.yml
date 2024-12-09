@@ -18,8 +18,8 @@ on:
   # Triggered whenever push to main and phase2_dev
   push:
     branches: 
-      - "main"
-      - "phase2_dev"
+      - main
+      - phase2_dev
 
   # Triggered whenever a pull request is created on main
   pull_request:

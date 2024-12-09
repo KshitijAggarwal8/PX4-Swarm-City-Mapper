@@ -67,7 +67,7 @@ jobs:
 
       # Upload coverage result to CodeCov
       - name: Upload coverage result to CodeCov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # required (must add token in your github repo)
           files: ${{github.workspace}}/build/test_coverage_merged.info

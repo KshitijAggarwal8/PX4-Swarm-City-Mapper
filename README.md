@@ -1,3 +1,6 @@
+![CICD Workflow status](https://github.com/KshitijAggarwal8/PX4-Swarm-City-Mapper/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
+
+
 [![codecov](https://codecov.io/gh/Apoorv-1009/PX4-Aerial-Swarm-Reconstruction/graph/badge.svg?token=QapVFaDHVu)](https://codecov.io/gh/Apoorv-1009/PX4-Aerial-Swarm-Reconstruction) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 # PX4 Swarm City Mapper

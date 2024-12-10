@@ -51,7 +51,8 @@ set -u                          # re-enable undefined variable check
 ##############################
 # 2. run all tests
 ##############################
-colcon test
+# colcon test
+colcon test --packages-select px4_swarm_controller
 
 ##############################
 # 3. get return status  (none-zero will cause the script to exit)

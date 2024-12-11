@@ -1,5 +1,4 @@
-![CICD Workflow status](https://github.com/KshitijAggarwal8/PX4-Swarm-City-Mapper/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
-[![codecov](https://codecov.io/gh/Apoorv-1009/PX4-Swarm-City-Mapper/graph/badge.svg?token=QapVFaDHVu)](https://codecov.io/gh/Apoorv-1009/PX4-Swarm-City-Mapper) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![CICD Workflow status](https://github.com/KshitijAggarwal8/PX4-Swarm-City-Mapper/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg) [![codecov](https://codecov.io/gh/KshitijAggarwal8/PX4-Swarm-City-Mapper/graph/badge.svg?token=QapVFaDHVu)](https://codecov.io/gh/KshitijAggarwal8/PX4-Swarm-City-Mapper) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 # PX4-Aerial-Swarm-Reconstruction
 This project involves deploying multiple PX4 drones equipped with stereo cameras in a simulated city environment in Gazebo. The drones collaboratively map the city, generating a point cloud representation of the environment. The resulting point cloud is saved and can be visualized in RViz, providing a comprehensive 3D map of the simulated city.
@@ -49,11 +48,7 @@ source ~/.bashrc
 
 ```
 
-<<<<<<< HEAD
-## Setting up PX4 Swarm City Mapper
-=======
 ## Setting up PX4-Aerial-Swarm-Reconstruction Repository
->>>>>>> upstream/main
 This repository contains the custom world files for the city simulation, along with the launch files for spawning the world with `n` drones (max 255).
 
 ```bash
@@ -183,10 +178,6 @@ This package must be sourced and included in every ROS2 PX4 workspace, it is hig
 # For ~/.zshrc:
 echo "source /PX4-Aerial-Swarm-Reconstruction/install/local_setup.zsh" >> ~/.zshrc
 source ~/.zshrc
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/main
 # For ~/.bashrc:
 echo "source /PX4-Aerial-Swarm-Reconstruction/install/local_setup.bash" >> ~/.bashrc
 source ~/.bashrc
@@ -249,7 +240,10 @@ echo $? > ../../results/clangtidy_output.txt
 ```
 
 # Doxygen
-!!! Add here !!!
+To generate Docs for the project, run the folling command in the root of the directory:
+```bash
+./do-docs.bash
+```
 
 # Known Issues/Bugs
 Due to a namespace error encountered while spawning the drones, we were unable to retrieve point cloud data from the drones, which unfortunately left the reconstruction section of this project incomplete. Despite our efforts to resolve the issue by seeking help on PX4 developer forums, ROS2 forums, and other platforms, we were unable to find a solution, likely due to the limited resources and documentation available on this specific topic for ROS2. However, the progress we have made so far serves as a robust foundation and a strong stepping stone for future city mapping projects utilizing a swarm of drones. <br>Currently, there are no known bugs in the program, and as long as `PX4-Autopilot` is built correctly, the provided codes will execute seamlessly out of the box.

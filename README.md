@@ -1,9 +1,7 @@
 ![CICD Workflow status](https://github.com/KshitijAggarwal8/PX4-Swarm-City-Mapper/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
+[![codecov](https://codecov.io/gh/Apoorv-1009/PX4-Swarm-City-Mapper/graph/badge.svg?token=QapVFaDHVu)](https://codecov.io/gh/Apoorv-1009/PX4-Swarm-City-Mapper) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-
-[![codecov](https://codecov.io/gh/KshitijAggarwal8/PX4-Swarm-City-Mapper/graph/badge.svg?token=QapVFaDHVu)](https://codecov.io/gh/KshitijAggarwal8/PX4-Swarm-City-Mapper) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-
-# PX4 Swarm City Mapper
+# PX4-Aerial-Swarm-Reconstruction
 This project involves deploying multiple PX4 drones equipped with stereo cameras in a simulated city environment in Gazebo. The drones collaboratively map the city, generating a point cloud representation of the environment. The resulting point cloud is saved and can be visualized in RViz, providing a comprehensive 3D map of the simulated city.
 
 # Phase 0
@@ -11,12 +9,20 @@ Phase 0 encompasses the project proposal, detailing the objectives and outlining
 Product Dev Notes: [Link](https://docs.google.com/document/d/1IhdOAMICzZZBzhB9_Nkyce7AI6Z4n4CMd4ubZWPyqKw/edit?usp=sharing)
 
 # Phase 1
-As a part of phase 1 of this project, we successfully launched **20 Iris quadcopters** in a custom city world in Gazebo. Each drone operates independently, and we are able to retrieve critical telemetry data through ROS 2 topics, including local position, IMU readings, and velocity. These topics enable real-time monitoring and control of the swarm, providing the foundations for advanced functionalities like collaborative mapping, trajectory planning, and obstacle avoidance in the next phase of the project. </br>
+As a part of phase 1 of this project, we successfully launched **20 Iris quadcopters** in a custom city world in Gazebo. Each drone operates independently, and we are able to retrieve critical telemetry data through ROS2 topics, including local position, IMU readings, and velocity. These topics enable real-time monitoring and control of the swarm, providing the foundations for advanced functionalities like collaborative mapping, trajectory planning, and obstacle avoidance in the next phase of the project. </br>
 <img src="screenshots/grid_plan.jpeg" alt="Grid plan world" width="700"/>
 
 All documents pertaining to this phase can be found under `UML/initial` <br>
 Product Dev Notes: [Link](https://docs.google.com/document/d/1IhdOAMICzZZBzhB9_Nkyce7AI6Z4n4CMd4ubZWPyqKw/edit?usp=sharing) <br>
-Product Tracking Sheet: [Link](https://docs.google.com/spreadsheets/d/1d-81s3KT0pe81IKDCRShrfuD6AH13XsJ9yQLLJY3_XI/edit?usp=sharing)
+Product Tracking Sheet: [Link](https://docs.google.com/spreadsheets/d/1d-81s3KT0pe81IKDCRShrfuD6AH13XsJ9yQLLJY3_XI/edit?usp=sharing) <br>
+
+# Phase 2
+As a part of Phase 2 of this project, we were able to control the swarm to do a controller sweep of the grid world. Due to namespace issues, the pointcloud data is unavailable. However, the swarm controller works well, serving as a foundation for collaborative swarm mapping. <br>
+All documents pertaining to this phase can be found under `UML/revised` <br>
+Product Dev Notes: [Link](https://docs.google.com/document/d/1IhdOAMICzZZBzhB9_Nkyce7AI6Z4n4CMd4ubZWPyqKw/edit?usp=sharing) <br>
+Product Tracking Sheet: [Link](https://docs.google.com/spreadsheets/d/1d-81s3KT0pe81IKDCRShrfuD6AH13XsJ9yQLLJY3_XI/edit?usp=sharing) <br>
+Video Demonstration: [Link](https://youtu.be/DebJJggVpnA) <br>
+
 
 # Setting up the Workspace
 
@@ -43,7 +49,11 @@ source ~/.bashrc
 
 ```
 
+<<<<<<< HEAD
 ## Setting up PX4 Swarm City Mapper
+=======
+## Setting up PX4-Aerial-Swarm-Reconstruction Repository
+>>>>>>> upstream/main
 This repository contains the custom world files for the city simulation, along with the launch files for spawning the world with `n` drones (max 255).
 
 ```bash
@@ -173,6 +183,10 @@ This package must be sourced and included in every ROS2 PX4 workspace, it is hig
 # For ~/.zshrc:
 echo "source /PX4-Aerial-Swarm-Reconstruction/install/local_setup.zsh" >> ~/.zshrc
 source ~/.zshrc
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/main
 # For ~/.bashrc:
 echo "source /PX4-Aerial-Swarm-Reconstruction/install/local_setup.bash" >> ~/.bashrc
 source ~/.bashrc
@@ -206,6 +220,7 @@ colcon test --packages-select px4_swarm_controller
 
 # Optionally, you can test px4_msgs as well, however this is not needed
 colcon test
+<<<<<<< HEAD
 
 # Run the tests and generate the coverage report
 ros2 run px4_swarm_controller generate_coverage_report.bash      
@@ -213,3 +228,46 @@ ros2 run px4_swarm_controller generate_coverage_report.bash
 # View the coverage reports
 open build/px4_swarm_controller/test_coverage/index.html 
 ```
+=======
+
+# Run the tests and generate the coverage report
+ros2 run px4_swarm_controller generate_coverage_report.bash      
+
+# View the coverage reports
+open build/px4_swarm_controller/test_coverage/index.html 
+```
+
+# Running Code Quality Checks
+```bash
+# Switch to the px4_swarm_controller package
+cd ~/PX4-Aerial-Swarm-Reconstruction/src/px4_swarm_controller
+
+# cpplint
+cpplint --filter=-build/c++11,+build/c++17,-build/namespaces,-build/include_order src/*.cpp > ../../results/cpplint_output.txt
+
+# cppcheck
+cppcheck --enable=all --std=c++17 --suppress=missingIncludeSystem $(find . -name "*.cpp" | grep -vE -e "^./build/") --check-config > ../../results/cppcheck_output.txt
+
+# To format the code under /libs and /src to Google C++ style
+clang-tidy -extra-arg=-std=c++17 src/*.cpp
+clang-tidy -extra-arg=-std=c++17 libs/Control/*.cpp
+clang-tidy -extra-arg=-std=c++17 libs/Control/*.hpp
+
+# Save the clang-tidy output with 
+echo $? > ../../results/clangtidy_output.txt
+```
+
+# Doxygen
+!!! Add here !!!
+
+# Known Issues/Bugs
+Due to a namespace error encountered while spawning the drones, we were unable to retrieve point cloud data from the drones, which unfortunately left the reconstruction section of this project incomplete. Despite our efforts to resolve the issue by seeking help on PX4 developer forums, ROS2 forums, and other platforms, we were unable to find a solution, likely due to the limited resources and documentation available on this specific topic for ROS2. However, the progress we have made so far serves as a robust foundation and a strong stepping stone for future city mapping projects utilizing a swarm of drones. <br>Currently, there are no known bugs in the program, and as long as `PX4-Autopilot` is built correctly, the provided codes will execute seamlessly out of the box.
+
+# License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+# Disclaimer
+
+This software is provided "as is," without any warranties or conditions, express or implied. By using this software, you acknowledge that Acme Robotics is not liable for any damages or issues arising from its use. Users are responsible for ensuring the software’s suitability and safety for their specific applications, especially in environments with humans.
+>>>>>>> upstream/main

@@ -1,0 +1,9 @@
+<map id="ctrl::Control::Control" name="ctrl::Control::Control">
+<area shape="rect" id="node1" title="Construct a new Control object." alt="" coords="5,148,145,175"/>
+<area shape="rect" id="node2" href="$classctrl_1_1Control.html#a905b035922e1ce95031d7f9794b6f0c0" title="Function to arm the PX4." alt="" coords="225,5,345,32"/>
+<area shape="rect" id="node3" href="$classctrl_1_1Control.html#a60bbe9ef80f789b7644437e74904af6d" title="Function to change to offboard mode." alt="" coords="193,56,377,83"/>
+<area shape="rect" id="node4" href="$classctrl_1_1Control.html#a4a2688dbe884e0da390435633a3560c7" title="Function to publish the default setpoints read from the yaml file." alt="" coords="216,107,355,149"/>
+<area shape="rect" id="node5" href="$classctrl_1_1Control.html#af85aeae2d7648d8cf743c3778a9b7b64" title="Function to publish offboard control mode." alt="" coords="205,173,366,214"/>
+<area shape="rect" id="node6" href="$classctrl_1_1Control.html#a279bfaa451087a046c97c61997d38eae" title="Function to publish vehicle setpoint." alt="" coords="216,238,355,279"/>
+<area shape="rect" id="node7" href="$classctrl_1_1Control.html#a47ffd3d07e0511ac17c1b5f628201b18" title="Function callback for the local position subscriber." alt="" coords="204,303,367,345"/>
+</map>

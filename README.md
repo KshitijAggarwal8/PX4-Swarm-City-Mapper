@@ -220,15 +220,6 @@ colcon test --packages-select px4_swarm_controller
 
 # Optionally, you can test px4_msgs as well, however this is not needed
 colcon test
-<<<<<<< HEAD
-
-# Run the tests and generate the coverage report
-ros2 run px4_swarm_controller generate_coverage_report.bash      
-
-# View the coverage reports
-open build/px4_swarm_controller/test_coverage/index.html 
-```
-=======
 
 # Run the tests and generate the coverage report
 ros2 run px4_swarm_controller generate_coverage_report.bash      
@@ -270,4 +261,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 # Disclaimer
 
 This software is provided "as is," without any warranties or conditions, express or implied. By using this software, you acknowledge that Acme Robotics is not liable for any damages or issues arising from its use. Users are responsible for ensuring the software’s suitability and safety for their specific applications, especially in environments with humans.
->>>>>>> upstream/main

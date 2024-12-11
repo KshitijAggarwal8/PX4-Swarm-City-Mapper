@@ -1,0 +1,4 @@
+<map id="ctrl::Control::publish_trajectory_setpoint" name="ctrl::Control::publish_trajectory_setpoint">
+<area shape="rect" id="node1" title="Function to publish vehicle setpoint." alt="" coords="193,5,332,47"/>
+<area shape="rect" id="node2" href="$classctrl_1_1Control.html#a3b4b78e5a1f7cc126632e7ac03142985" title="Construct a new Control object." alt="" coords="5,13,145,39"/>
+</map>
